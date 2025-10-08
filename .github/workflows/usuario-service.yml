@@ -51,8 +51,8 @@ jobs:
       - name: Build usuario-service
         working-directory: usuario-service
         env:
-          USER: ${{ secrets.USER }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-          SECRET: ${{ secrets.SECRET }}
+          USER: postgres
+          PASSWORD: postgres
+          SECRET: 1234567
           SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/urbike
         run: mvn -B clean package
