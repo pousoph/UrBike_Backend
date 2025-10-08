@@ -1,0 +1,32 @@
+name: Build Eureka Server(Maven)
+
+on:
+  push:
+    paths:
+      - 'eureka-server/**'
+  pull_request:
+    paths:
+      - 'eureka-server/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build eureka-server
+        working-directory: eureka-server
+        env:
+          USER: postgres
+          PASSWORD: postgres
+          SECRET: 1234567
+          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/urbike
+        run: mvn -B clean package
