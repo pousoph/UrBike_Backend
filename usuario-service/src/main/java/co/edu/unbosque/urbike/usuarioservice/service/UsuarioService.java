@@ -21,4 +21,8 @@ public class UsuarioService implements UserDetailsService {
         return usuarioRepository.findByCorreo(username);
     }
 
+    public String getNombrexId(Integer idUsuario){
+        return usuarioRepository.findById(idUsuario).get().getNombre();
+    }
+
 }

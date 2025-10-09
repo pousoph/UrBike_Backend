@@ -15,8 +15,14 @@ public class EstacionController {
     public EstacionController(EstacionService estacionService) {
         this.estacionService = estacionService;
     }
+
     @GetMapping
     public ResponseEntity<?> obtenerEstacion(@RequestParam Integer id_estacion) {
         return ResponseEntity.ok(estacionService.obtenerEstacionNombreById(id_estacion));
+    }
+
+    @GetMapping("/estacion")
+    public ResponseEntity<?> obtenerEstacionTipoById(@RequestParam Integer id_bicicleta) {
+        return ResponseEntity.ok(estacionService.obtenerEstacionTipoById(id_bicicleta));
     }
 }

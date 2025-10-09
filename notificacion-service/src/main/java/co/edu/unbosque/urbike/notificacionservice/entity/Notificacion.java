@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 
-@Table(name = "notificaciones" )
+@Table(name = "notificaciones")
 @Entity(name = "notificaciones")
 public class Notificacion {
     @Id
@@ -27,6 +27,7 @@ public class Notificacion {
         this.fechaEnvio = fechaEnvio;
         this.estado = estado;
     }
+
     public Notificacion() {
 
     }

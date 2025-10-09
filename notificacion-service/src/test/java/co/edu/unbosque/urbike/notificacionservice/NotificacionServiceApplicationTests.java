@@ -8,6 +8,7 @@ class NotificacionServiceApplicationTests {
 
     @Test
     void contextLoads() {
+        assert true;
     }
 
 }

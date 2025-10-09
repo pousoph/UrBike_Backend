@@ -1,5 +1,6 @@
 package co.edu.unbosque.urbike.notificacionservice.service;
 
+import co.edu.unbosque.urbike.notificacionservice.entity.Notificacion;
 import co.edu.unbosque.urbike.notificacionservice.model.request.CorreoDTO;
 import co.edu.unbosque.urbike.notificacionservice.repository.NotificacionRepository;
 import jakarta.mail.*;
@@ -10,6 +11,8 @@ import jakarta.mail.internet.MimeMultipart;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Properties;
 
 @Service
@@ -53,6 +56,9 @@ public class NotificacionService {
             t.connect(emailFrom, passwordFrom);
             t.sendMessage(email, email.getRecipients(Message.RecipientType.TO));
             t.close();
+
+            notificacionRepository.save(new Notificacion(null, correo.id_usuario(), correo.mensaje(), "EMAIL", Timestamp.valueOf(LocalDateTime.now()), "ENVIADO"));
+
             return true;
         } catch (MessagingException e) {
             e.printStackTrace();
