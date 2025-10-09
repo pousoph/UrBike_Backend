@@ -4,6 +4,7 @@ import co.edu.unbosque.urbike.usuarioservice.entity.Usuario;
 import co.edu.unbosque.urbike.usuarioservice.model.request.LoginDTO;
 import co.edu.unbosque.urbike.usuarioservice.model.request.RegistroDTO;
 import co.edu.unbosque.urbike.usuarioservice.model.response.InicioSesionDTO;
+import co.edu.unbosque.urbike.usuarioservice.model.response.UsuarioSaldoDTO;
 import co.edu.unbosque.urbike.usuarioservice.repository.UsuarioRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -61,8 +62,9 @@ public class AuthService {
         );
     }
 
-    public Integer obtenerIdUsuarioToken(String token) {
-        return tokenService.getIdUsuario(token);
+    public UsuarioSaldoDTO obtenerIdUsuarioToken(String token) {
+        Usuario u = usuarioRepository.findById(tokenService.getIdUsuario(token)).get();
+        return new  UsuarioSaldoDTO(u.getIdUsuario(), u.getSaldo());
     }
 
 }

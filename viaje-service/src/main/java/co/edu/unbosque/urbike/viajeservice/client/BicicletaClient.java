@@ -15,4 +15,10 @@ public interface BicicletaClient {
     @GetExchange("/estacion")
     String obtenerEstacion(@RequestParam Integer id_estacion);
 
+    @GetExchange("/id-bici-serial")
+    Integer obtenerIdBicicletaXSerial(@RequestParam String numero_serie);
+
+    @GetExchange("/estacion")
+    String obtenerEstacionTipoById(@RequestParam Integer id_estacion);
+
 }

@@ -92,4 +92,32 @@ public class Viaje {
     public Float getTotal() {
         return total;
     }
+
+    public void setIdViaje(Integer idViaje) {
+        this.idViaje = idViaje;
+    }
+
+    public void setFechaInicio(Timestamp fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public void setTarifaBase(Float tarifaBase) {
+        this.tarifaBase = tarifaBase;
+    }
+
+    public void setMinutosExtra(Integer minutosExtra) {
+        this.minutosExtra = minutosExtra;
+    }
+
+    public void setFechaFin(Timestamp fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public void setCostoExtra(Float costoExtra) {
+        this.costoExtra = costoExtra;
+    }
+
+    public void setTotal(Float total) {
+        this.total = total;
+    }
 }

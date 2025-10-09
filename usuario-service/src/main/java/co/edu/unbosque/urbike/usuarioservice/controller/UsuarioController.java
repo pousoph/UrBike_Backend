@@ -35,4 +35,14 @@ public class UsuarioController {
         token = token.substring(7);
         return ResponseEntity.status(HttpStatus.CREATED).body(authService.obtenerIdUsuarioToken(token));
     }
+
+    @GetMapping("/nombre-usuario")
+    public ResponseEntity<?> obtenerNombreUsuario(@RequestParam Integer idUsuario) {
+        return ResponseEntity.ok(usuarioService.getNombrexId(idUsuario));
+    }
+
+
+
+
+
 }

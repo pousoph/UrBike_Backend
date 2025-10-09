@@ -23,4 +23,9 @@ public class BicicletaController {
     public ResponseEntity<?> obtenerBicicletaReserva(@RequestParam Integer id_bicicleta) {
         return ResponseEntity.ok(bicicletaService.getBicicletaById(id_bicicleta));
     }
+
+    @GetMapping("/id-bici-serial")
+    public ResponseEntity<?> obtenerIdBicicletaXSerial(@RequestParam String numero_serie) {
+        return ResponseEntity.ok(bicicletaService.getIdXSerialBicicleta(numero_serie));
+    }
 }

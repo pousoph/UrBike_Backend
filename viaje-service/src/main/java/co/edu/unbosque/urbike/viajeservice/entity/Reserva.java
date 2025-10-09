@@ -11,9 +11,9 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_reserva")
     private Integer idReserva;
-    @Column(name = "id_usuario")
+    @Column(name = "idUsuario")
     private Integer idUsuario;
-    @Column(name = "id_bicicleta")
+    @Column(name = "idBicicleta")
     private Integer idBicicleta;
     @Column(name = "id_viaje")
     private Integer idViaje;
@@ -63,5 +63,9 @@ public class Reserva {
 
     public String getEstado() {
         return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

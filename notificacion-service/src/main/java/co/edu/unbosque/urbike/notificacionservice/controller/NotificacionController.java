@@ -19,7 +19,7 @@ public class NotificacionController {
     }
 
     @GetMapping
-    public ResponseEntity<?> mandarCorreo(@RequestBody CorreoDTO correo){
+    public ResponseEntity<?> mandarCorreo(@RequestBody CorreoDTO correo) {
         return ResponseEntity.ok(notificacionService.enviarEmail(correo));
     }
 }

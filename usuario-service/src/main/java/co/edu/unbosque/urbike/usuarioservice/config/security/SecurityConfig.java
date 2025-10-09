@@ -32,6 +32,7 @@ public class SecurityConfig {
                         authorizeHttpRequests
                                 .requestMatchers(HttpMethod.POST, "/urbike/v1/usuario/registro").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/urbike/v1/usuario/login").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/urbike/v1/usuario/nombre-usuario").permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )

@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface BicicletaRepository extends JpaRepository<Bicicleta, Integer> {
     List<Bicicleta> findByIdEstacion(Integer idEstacion);
+
+    Bicicleta findByNumeroSerie(String numeroSerie);
 }
