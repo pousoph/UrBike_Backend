@@ -55,4 +55,5 @@ jobs:
           PASSWORD: postgres
           SECRET: 1234567
           SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/urbike
+          STRIPE_KEY_PRIVATE: ${{ secrets.STRIPE_KEY_PRIVATE }}
         run: mvn -B clean package
