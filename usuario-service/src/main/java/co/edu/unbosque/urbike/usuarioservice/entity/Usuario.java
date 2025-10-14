@@ -28,17 +28,20 @@ public class Usuario implements UserDetails {
     private Timestamp fechaRegistro;
     @Column(name = "metodo_pago_preferido")
     private String metodoPagoPreferido;
+    @Column(name = "codigo_confirmacion")
+    private String codigoConfirmacion;
 
-    public Usuario(Integer idUsuario, String nombre, String correo, String contrasena, Boolean confirmado, String planActual, Float saldo, Timestamp fechaRegistro,  String metodoPagoPreferido) {
+    public Usuario(Integer idUsuario, String nombre, String correo, String contrasena, Float saldo, String planActual, Boolean confirmado, Timestamp fechaRegistro, String metodoPagoPreferido, String codigoConfirmacion) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
-        this.contrasena = contrasena;
-        this.confirmado = confirmado;
-        this.planActual = planActual;
-        this.saldo = saldo;
         this.correo = correo;
+        this.contrasena = contrasena;
+        this.saldo = saldo;
+        this.planActual = planActual;
+        this.confirmado = confirmado;
         this.fechaRegistro = fechaRegistro;
         this.metodoPagoPreferido = metodoPagoPreferido;
+        this.codigoConfirmacion = codigoConfirmacion;
     }
 
     public Usuario() {
@@ -94,5 +97,22 @@ public class Usuario implements UserDetails {
 
     public String getMetodoPagoPreferido() {
         return metodoPagoPreferido;
+    }
+
+    public String getCodigoConfirmacion() {
+        return codigoConfirmacion;
+    }
+
+
+    public void setConfirmado(Boolean confirmado) {
+        this.confirmado = confirmado;
+    }
+
+    public void setMetodoPagoPreferido(String metodoPagoPreferido) {
+        this.metodoPagoPreferido = metodoPagoPreferido;
+    }
+
+    public void setSaldo(Float saldo) {
+        this.saldo = saldo;
     }
 }

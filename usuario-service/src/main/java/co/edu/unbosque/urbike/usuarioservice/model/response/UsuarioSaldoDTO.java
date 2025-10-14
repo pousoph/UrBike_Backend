@@ -1,5 +1,5 @@
 package co.edu.unbosque.urbike.usuarioservice.model.response;
 
-public record UsuarioSaldoDTO(Integer id_usuario, Float saldo) {
+public record UsuarioSaldoDTO(Integer idUsuario, Float saldo) {
 
 }

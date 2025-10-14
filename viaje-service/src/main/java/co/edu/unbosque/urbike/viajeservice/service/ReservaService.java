@@ -36,7 +36,7 @@ public class ReservaService {
         if(usuario.saldo()<=0){
             throw new InsufficientFundsException("Saldo insuficiente");
         }
-
+        System.out.println(newReserva.idBicicleta());
         BicicletaDTO bicicletaDTO = bicicletaClient.obtenerBicicletaReserva(newReserva.idBicicleta());
 
         Viaje v = viajeRepo.save(new Viaje(

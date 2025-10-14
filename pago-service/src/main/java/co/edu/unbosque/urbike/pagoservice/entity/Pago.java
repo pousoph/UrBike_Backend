@@ -20,6 +20,8 @@ public class Pago {
     private String referencia;
     @Column(name = "fecha_pago")
     private Timestamp fechaPago;
+    @Column(name = "metodo_pago_usado")
+    private String metodoPagoUsado;
     @Column(name = "metodo_pago")
     private String metodoPago;
 
@@ -27,7 +29,7 @@ public class Pago {
 
     }
 
-    public Pago(Integer idPago, Integer idUsuario, Integer idViaje, Float monto, String estado, String referencia, Timestamp fechaPago, String metodoPago) {
+    public Pago(Integer idPago, Integer idUsuario, Integer idViaje, Float monto, String estado, String referencia, Timestamp fechaPago, String metodoPagoUsado, String metodoPago) {
         this.idPago = idPago;
         this.idUsuario = idUsuario;
         this.idViaje = idViaje;
@@ -35,6 +37,7 @@ public class Pago {
         this.estado = estado;
         this.referencia = referencia;
         this.fechaPago = fechaPago;
+        this.metodoPagoUsado = metodoPagoUsado;
         this.metodoPago = metodoPago;
     }
 
@@ -66,7 +69,19 @@ public class Pago {
         return fechaPago;
     }
 
+    public String getMetodoPagoUsado() {
+        return metodoPagoUsado;
+    }
+
     public String getMetodoPago() {
         return metodoPago;
+    }
+
+    public void setIdPago(Integer idPago) {
+        this.idPago = idPago;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }
