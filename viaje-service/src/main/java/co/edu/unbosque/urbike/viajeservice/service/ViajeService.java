@@ -28,12 +28,13 @@ public class ViajeService {
         this.usuarioClient = usuarioClient;
     }
 
-    public Boolean iniciarViaje(String numero_serie) {
-        Integer idBicicleta = bicicletaClient.obtenerIdBicicletaXSerial(numero_serie);
+    public Integer iniciarViaje(String token, String numeroSerie) {
+        usuarioClient.obtenerIdUsuarioToken(token);
+        Integer idBicicleta = bicicletaClient.obtenerIdBicicletaXSerial(numeroSerie);
         Reserva r = reservaRepo.findAllByIdBicicleta((idBicicleta)).get(reservaRepo.findAllByIdBicicleta((idBicicleta)).size()-1);
         if (r.getFechaExpira().before(Timestamp.valueOf(LocalDateTime.now()))) {
             r.setEstado("EXPIRADA");
-            return false;
+            return -1;
         }
         Viaje v = viajeRepo.findById(r.getIdViaje()).get();
         String estacionInicio = bicicletaClient.obtenerEstacionTipoById(v.getEstacionInicio());
@@ -46,13 +47,14 @@ public class ViajeService {
         }
         v.setTarifaBase(tarifaBase);
         v.setFechaInicio(Timestamp.valueOf(LocalDateTime.now()));
-        return true;
+        viajeRepo.save(v);
+        return v.getIdViaje();
         //TODO ESTADO DE CANDADO UNLOCKED DESPUES DE PREGUNTAR
     }
 
     public FacturaDTO finViaje(FinViajeDTO finViajeDTO) {
-        Viaje v = viajeRepo.findAllByEstacionFin(finViajeDTO.idEstacion()).get(viajeRepo.findAllByEstacionFin(finViajeDTO.idEstacion()).size()-1);
-        Reserva r = reservaRepo.findByIdViaje(v.getIdViaje());
+        Viaje v = viajeRepo.findAllByIdViaje(finViajeDTO.idViaje());
+        Reserva r = reservaRepo.findByIdViaje(finViajeDTO.idViaje());
 
         int minutosExtra, maxMinutos = 0;
         float costoAdicional = 0F;
@@ -64,12 +66,15 @@ public class ViajeService {
             maxMinutos = 75;
             costoAdicional = 250F;
         }
-
+        v.setFechaFin(Timestamp.valueOf(LocalDateTime.now()));
         long total = Duration.between(v.getFechaFin().toLocalDateTime(), v.getFechaInicio().toLocalDateTime()).toMinutes();
         minutosExtra = Math.toIntExact(Math.max(0, total - maxMinutos));
 
         costoAdicional *= minutosExtra;
-
+        v.setMinutosExtra(minutosExtra);
+        v.setCostoExtra(costoAdicional);
+        v.setTotal(v.getTarifaBase() + costoAdicional);
+        viajeRepo.save(v);
         return new FacturaDTO(
                 v.getIdUsuario(),
                 usuarioClient.nombreUsuario(v.getIdUsuario()),

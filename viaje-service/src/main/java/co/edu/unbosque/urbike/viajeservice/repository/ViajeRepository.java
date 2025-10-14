@@ -9,4 +9,6 @@ public interface ViajeRepository extends JpaRepository<Viaje, Integer> {
     Viaje findByEstacionFin(Integer estacionFin);
 
     List<Viaje> findAllByEstacionFin(Integer estacionFin);
+
+    Viaje findAllByIdViaje(Integer idViaje);
 }

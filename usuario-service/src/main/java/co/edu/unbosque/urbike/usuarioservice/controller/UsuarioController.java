@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/urbike/v1/usuario")
 public class UsuarioController {
     private UsuarioService usuarioService;
@@ -25,8 +26,10 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(authService.registrarUsuario(registro));
     }
 
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid LoginDTO login){
+        System.out.println("entro");
         return ResponseEntity.accepted().body(authService.iniciarSesion(login));
     }
 

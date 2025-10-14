@@ -37,11 +37,12 @@ public class AuthService {
                         registro.nombre(),
                         registro.correo(),
                         passwordEncoder.encode(registro.contrasena()),
-                        false,
-                        "BASICO",
                         0F,
+                        "BASICO",
+                        false,
                         Timestamp.valueOf(LocalDateTime.now()),
-                        "SALDO"
+                        "SALDO",
+                        null
                 )
         );
 

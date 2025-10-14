@@ -21,8 +21,8 @@ public class EstacionController {
         return ResponseEntity.ok(estacionService.obtenerEstacionNombreById(id_estacion));
     }
 
-    @GetMapping("/estacion")
-    public ResponseEntity<?> obtenerEstacionTipoById(@RequestParam Integer id_bicicleta) {
-        return ResponseEntity.ok(estacionService.obtenerEstacionTipoById(id_bicicleta));
+    @GetMapping("/tipo")
+    public ResponseEntity<?> obtenerEstacionTipoById(@RequestParam Integer id_estacion) {
+        return ResponseEntity.ok(estacionService.obtenerEstacionTipoById(id_estacion));
     }
 }
