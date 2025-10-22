@@ -1,7 +1,10 @@
 package co.edu.unbosque.urbike.bicicletaservice.service;
 
+import co.edu.unbosque.urbike.bicicletaservice.entity.Estacion;
 import co.edu.unbosque.urbike.bicicletaservice.repository.EstacionRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class EstacionService {
@@ -23,5 +26,10 @@ public class EstacionService {
     public String obtenerEstacionTipoById(Integer id_estacion) {
         return estacionRepo.findById(id_estacion).get().getCategoria();
     }
+
+    public List<Estacion> listarTodasLasEstaciones() {
+        return estacionRepo.findAll();
+    }
+
 
 }

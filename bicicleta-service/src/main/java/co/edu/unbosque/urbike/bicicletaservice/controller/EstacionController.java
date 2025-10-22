@@ -2,11 +2,9 @@ package co.edu.unbosque.urbike.bicicletaservice.controller;
 
 import co.edu.unbosque.urbike.bicicletaservice.service.EstacionService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/urbike/v1/bicicleta/estacion")
 public class EstacionController {
@@ -24,5 +22,10 @@ public class EstacionController {
     @GetMapping("/tipo")
     public ResponseEntity<?> obtenerEstacionTipoById(@RequestParam Integer id_estacion) {
         return ResponseEntity.ok(estacionService.obtenerEstacionTipoById(id_estacion));
+    }
+
+    @GetMapping("/listar")
+    public ResponseEntity<?> listarTodasLasEstaciones() {
+        return ResponseEntity.ok(estacionService.listarTodasLasEstaciones());
     }
 }
