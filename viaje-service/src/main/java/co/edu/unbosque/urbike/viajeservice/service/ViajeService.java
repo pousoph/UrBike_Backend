@@ -4,6 +4,7 @@ import co.edu.unbosque.urbike.viajeservice.client.BicicletaClient;
 import co.edu.unbosque.urbike.viajeservice.client.UsuarioClient;
 import co.edu.unbosque.urbike.viajeservice.entity.Reserva;
 import co.edu.unbosque.urbike.viajeservice.entity.Viaje;
+import co.edu.unbosque.urbike.viajeservice.exception.NotArrivedException;
 import co.edu.unbosque.urbike.viajeservice.model.response.FacturaDTO;
 import co.edu.unbosque.urbike.viajeservice.model.request.FinViajeDTO;
 import co.edu.unbosque.urbike.viajeservice.repository.ReservaRepository;
@@ -42,7 +43,7 @@ public class ViajeService {
         float tarifaBase = 0F;
         if (estacionInicio.equals("METRO") && (estacionFinal.equals("RESIDENCIAL") || estacionFinal.equals("CENTRO_FINANCIERO"))) {
             tarifaBase = 17500F;
-        } else if ((estacionInicio.equals("RESIDENCIAL") || estacionInicio.equals("CENTRO_FINANCIERO")) && (estacionFinal.equals("METRO"))) {
+        } else {
             tarifaBase = 25000F;
         }
         v.setTarifaBase(tarifaBase);
@@ -55,6 +56,10 @@ public class ViajeService {
     public FacturaDTO finViaje(FinViajeDTO finViajeDTO) {
         Viaje v = viajeRepo.findAllByIdViaje(finViajeDTO.idViaje());
         Reserva r = reservaRepo.findByIdViaje(finViajeDTO.idViaje());
+
+        if(!bicicletaClient.compararEstaciones(v.getIdBicicleta(), v.getEstacionFin())){
+            throw new NotArrivedException("No ha llegado a la estación");
+        }
 
         int minutosExtra, maxMinutos = 0;
         float costoAdicional = 0F;

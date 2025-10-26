@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/urbike/v1/usuario")
@@ -43,9 +45,17 @@ public class UsuarioController {
     public ResponseEntity<?> obtenerNombreUsuario(@RequestParam Integer idUsuario) {
         return ResponseEntity.ok(usuarioService.getNombrexId(idUsuario));
     }
-
-
-
-
+//
+//    @PutMapping("/saldo")
+//    public ResponseEntity<String> recargarSaldo(@RequestHeader("Authorization") String token, @RequestParam Integer idUsuario, @RequestBody Double amount){
+//        token = token.substring(7);
+//
+//        if (Objects.equals(authService.obtenerIdUsuarioToken(token).idUsuario(), idUsuario)){
+//            usuarioService.recargarSaldo(idUsuario, amount);
+//            return ResponseEntity.ok("Saldo recargado");
+//        }else{
+//            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+//        }
+//    }
 
 }
