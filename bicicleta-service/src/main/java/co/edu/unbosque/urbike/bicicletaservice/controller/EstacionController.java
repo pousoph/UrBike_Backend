@@ -28,4 +28,9 @@ public class EstacionController {
     public ResponseEntity<?> listarTodasLasEstaciones() {
         return ResponseEntity.ok(estacionService.listarTodasLasEstaciones());
     }
+
+    @GetMapping("/compare")
+    public ResponseEntity<?> compararEstaciones(@RequestParam Integer idBicicleta, @RequestParam Integer idEstacion) {
+        return ResponseEntity.ok(estacionService.compararEstacionBicicleta(idBicicleta, idEstacion));
+    }
 }
